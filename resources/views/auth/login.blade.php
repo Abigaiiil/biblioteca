@@ -1,0 +1,336 @@
+@extends('layout.auth')
+
+@section('content')
+<!-- ===== HEADER PÚBLICO ===== -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <i class="fas fa-book text-blue-600 text-2xl mr-3"></i>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">Biblioteca Municipal</h1>
+                        <p class="text-gray-600 text-sm">"Donde las páginas cobran vida"</p>
+                    </div>
+                </div>
+
+                <!-- Menú Desktop -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-blue-600 font-semibold">Inicio</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Catálogo</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Servicios</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Eventos</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600">Contacto</a>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Acceder
+                    </a>
+                </nav>
+
+                <!-- Botón Hamburguesa Móvil -->
+                <div class="md:hidden">
+                    <input type="checkbox" id="menu-toggle" class="hidden">
+                    <label for="menu-toggle" class="text-gray-700 text-xl cursor-pointer">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Menú Móvil -->
+            <div id="mobile-menu" class="md:hidden hidden border-t mt-3 pb-4">
+                <div class="flex flex-col space-y-3 pt-3">
+                    <a href="#" class="text-blue-600 font-semibold py-2">Inicio</a>
+                    <a href="#" class="text-gray-600 py-2">Catálogo</a>
+                    <a href="#" class="text-gray-600 py-2">Servicios</a>
+                    <a href="#" class="text-gray-600 py-2">Eventos</a>
+                    <a href="#" class="text-gray-600 py-2">Contacto</a>
+                    <a href="#" class="bg-blue-600 text-white text-center py-2 rounded-lg mt-2">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Acceder
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== SECCIÓN DE FORMULARIOS ===== -->
+    <section class="py-12 md:py-16 bg-gradient-to-b from-blue-50 to-white flex-grow">
+        <div class="container mx-auto px-4">
+            
+            <!-- Título de sección -->
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    <span class="text-blue-600">Accede</span> a tu cuenta o <span class="text-green-600">regístrate</span>
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Gestiona tus préstamos, reservas y descubre todo nuestro catálogo
+                </p>
+            </div>
+
+            <!-- Grid responsivo: 1 columna en móvil, 2 columnas en desktop -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 max-w-7xl mx-auto">
+                
+                <!-- ========================================= -->
+                <!-- FORMULARIO DE LOGIN - Email y Password   -->
+                <!-- ========================================= -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                    <!-- Cabecera -->
+                    <div class="text-center mb-8">
+                        <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user text-blue-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Iniciar Sesión</h3>
+                        <p class="text-gray-600">¿Ya eres socio? Accede a tu cuenta</p>
+                    </div>
+
+                    <!-- Formulario de Login -->
+                    <form class="space-y-6" action = "{{ route('login') }}" method = "POST">
+                        @csrf
+                        <!-- Campo EMAIL -->
+                        <div>
+                            <label for="login-email" class="block text-gray-700 text-sm font-semibold mb-2">
+                                <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                                Correo Electrónico
+                            </label>
+                            <input 
+                                type="email" 
+                                id="login-email" 
+                                name="email" 
+                                placeholder="tucorreo@biblioteca.es" 
+                                required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                        </div>
+
+                        <!-- Campo PASSWORD -->
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <label for="login-password" class="block text-gray-700 text-sm font-semibold mb-2">
+                                    <i class="fas fa-lock text-gray-400 mr-2"></i>
+                                    Contraseña
+                                </label>
+                                <span class="text-xs text-gray-500">Mínimo 6 caracteres</span>
+                            </div>
+                            <input 
+                                type="password" 
+                                id="login-password" 
+                                name="password" 
+                                placeholder="••••••••" 
+                                required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                        </div>
+
+                        <!-- Opciones de sesión -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="flex items-center">
+                                <input 
+                                    type="checkbox" 
+                                    id="remember-me" 
+                                    name="remember" 
+                                    class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
+                                >
+                                <label for="remember-me" class="ml-2 text-sm text-gray-600 cursor-pointer">
+                                    Recordar mi sesión
+                                </label>
+                            </div>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                                <i class="fas fa-key mr-1"></i>
+                                ¿Olvidaste tu contraseña?
+                            </a>
+                        </div>
+
+                        <!-- Botón de inicio de sesión -->
+                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-200 flex items-center justify-center">
+                            <i class="fas fa-sign-in-alt mr-2"></i>
+                            Iniciar Sesión
+                        </button>
+
+                        <!-- Enlace a registro -->
+                        <div class="text-center pt-4 border-t border-gray-200">
+                            <p class="text-gray-600">
+                                ¿No tienes cuenta?
+                                <a href="#registro" class="text-blue-600 hover:text-blue-800 font-semibold ml-1">
+                                    Regístrate aquí
+                                    <i class="fas fa-arrow-right ml-1 text-sm"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ========================================= -->
+                <!-- FORMULARIO DE REGISTRO - Campos completos -->
+                <!-- ========================================= -->
+                <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8">
+                    <!-- Cabecera -->
+                    <div class="text-center mb-8">
+                        <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user-plus text-green-600 text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Crear Cuenta</h3>
+                        <p class="text-gray-600">Hazte socio y disfruta de todos los beneficios</p>
+                    </div>
+
+                    <!-- Formulario de Registro -->
+                    <form class="space-y-6" action = "{{ route('register') }}" method = "POST">
+                        @csrf
+                        <!-- Grid: Nombre y Apellido -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Campo NOMBRE -->
+                            <div>
+                                <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">
+                                    <i class="fas fa-user text-gray-400 mr-2"></i>
+                                    Nombre
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    placeholder="Juan" 
+                                    required 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                >
+                            </div>
+                            
+                        </div>
+
+                        <!-- Campo EMAIL -->
+                        <div>
+                            <label for="register-email" class="block text-gray-700 text-sm font-semibold mb-2">
+                                <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                                Correo Electrónico
+                            </label>
+                            <input 
+                                type="email" 
+                                id="register-email" 
+                                name="email" 
+                                placeholder="tucorreo@biblioteca.es" 
+                                required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                        </div>
+
+                        <!-- Grid: Password y Repetir Password -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Campo PASSWORD -->
+                            <div>
+                                <label for="password" class="block text-gray-700 text-sm font-semibold mb-2">
+                                    <i class="fas fa-lock text-gray-400 mr-2"></i>
+                                    Contraseña
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    placeholder="••••••••" 
+                                    required 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                >
+                                <p class="text-xs text-gray-500 mt-1">Mínimo 8 caracteres</p>
+                            </div>
+                            
+                            <!-- Campo REPETIR PASSWORD -->
+                            <div>
+                                <label for="password_confirmation" class="block text-gray-700 text-sm font-semibold mb-2">
+                                    <i class="fas fa-lock text-gray-400 mr-2"></i>
+                                    Repetir Contraseña
+                                </label>
+                                <input 
+                                    type="password" 
+                                    id="password_confirmation" 
+                                    name="password_confirmation" 
+                                    placeholder="••••••••" 
+                                    required 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                >
+                            </div>
+                        </div>
+
+                        <!-- Términos y condiciones -->
+                        <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input 
+                                        type="checkbox" 
+                                        id="accept-terms" 
+                                        name="terms" 
+                                        required 
+                                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
+                                    >
+                                </div>
+                                <div class="ml-3">
+                                    <label for="accept-terms" class="text-sm text-gray-700 cursor-pointer">
+                                        Acepto los 
+                                        <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Términos y Condiciones</a> 
+                                        y la 
+                                        <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Política de Privacidad</a>
+                                    </label>
+                                    <p class="text-xs text-gray-500 mt-1">
+                                        Tus datos están seguros con nosotros. No compartiremos tu información.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón de registro -->
+                        <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 transition duration-200 flex items-center justify-center">
+                            <i class="fas fa-user-plus mr-2"></i>
+                            Crear Cuenta Gratuita
+                        </button>
+
+                        <!-- Enlace a login -->
+                        <div class="text-center pt-4 border-t border-gray-200">
+                            <p class="text-gray-600">
+                                ¿Ya tienes cuenta?
+                                <a href="#login" class="text-blue-600 hover:text-blue-800 font-semibold ml-1">
+                                    Inicia sesión
+                                    <i class="fas fa-arrow-right ml-1 text-sm"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Beneficios adicionales -->
+            <div class="mt-16 max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-blue-100">
+                    <h4 class="text-xl font-bold text-gray-800 mb-6 text-center">
+                        <i class="fas fa-gift text-blue-600 mr-2"></i>
+                        Beneficios de ser socio
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="text-center p-3">
+                            <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-book text-blue-600"></i>
+                            </div>
+                            <p class="font-semibold text-gray-800">Préstamo</p>
+                            <p class="text-xs text-gray-600">Hasta 5 libros</p>
+                        </div>
+                        <div class="text-center p-3">
+                            <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-clock text-green-600"></i>
+                            </div>
+                            <p class="font-semibold text-gray-800">15 días</p>
+                            <p class="text-xs text-gray-600">de préstamo</p>
+                        </div>
+                        <div class="text-center p-3">
+                            <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-laptop text-purple-600"></i>
+                            </div>
+                            <p class="font-semibold text-gray-800">E-books</p>
+                            <p class="text-xs text-gray-600">Catálogo digital</p>
+                        </div>
+                        <div class="text-center p-3">
+                            <div class="bg-yellow-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-tag text-yellow-600"></i>
+                            </div>
+                            <p class="font-semibold text-gray-800">Descuentos</p>
+                            <p class="text-xs text-gray-600">En actividades</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @endsection

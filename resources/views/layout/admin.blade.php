@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administración Biblioteca</title>
 
-        <title>Biblioteca</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-        <!-- Styles / Scripts -->
+    <!-- Tailwind CDN directo para asegurar funcionamiento -->
+   <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
@@ -20,11 +20,11 @@
             </style>
         @endif
 
-
-        <style>
+    <style>
         /* CSS para menú hamburguesa SIN JavaScript */
         #menu-toggle { display: none; }
         #menu-toggle:checked ~ #mobile-menu { display: block; }
+        
         .hero-bg {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
@@ -32,271 +32,34 @@
             background-position: center;
         }
     </style>
-        
-
-    </head>    
+</head>
 
 
-    <body class="font-sans">
-    
-    <!-- HEADER PÚBLICO -->
-    <header class="bg-white shadow sticky top-0 z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <i class="fas fa-book text-blue-600 text-2xl mr-3"></i>
-                    <div>
-                        <h1 class="text-xl font-bold text-gray-800">Biblioteca Municipal</h1>
-                        <p class="text-gray-600 text-sm">"Donde las páginas cobran vida"</p>
-                    </div>
-                </div>
+<body class="font-sans bg-gray-50 min-h-screen flex flex-col">
 
-                <!-- Menú Desktop -->
-                <nav class="hidden md:flex items-center space-x-6">
-                    <a href="#" class="text-blue-600 font-semibold">Inicio</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600">Catálogo</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600">Servicios</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600">Eventos</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600">Contacto</a>
-                    <a href="{{ route('login') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Acceder
-                    </a>
-                </nav>
 
-                <!-- Botón Hamburguesa Móvil -->
-                <div class="md:hidden">
-                    <input type="checkbox" id="menu-toggle" class="hidden">
-                    <label for="menu-toggle" class="text-gray-700 text-xl">
-                        <i class="fas fa-bars"></i>
-                    </label>
-                </div>
+
+
+    <header class="fixed w-full z-20 top-0 bg-white border-b border-gray-200">
+        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-3 px-4">
+            
+            <div class="flex items-center">
+                <button id="sidebarToggle" class="mr-4 inline-md:hidden text-gray-600 focus:outline-none lg:hidden">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+                <a class="text-blue-600 no-underline hover:no-underline font-bold text-xl" href="#">
+                    <i class="fas fa-book-reader mr-2"></i> BiblioAdmin
+                </a>
             </div>
 
-            <!-- Menú Móvil -->
-            <div id="mobile-menu" class="md:hidden hidden border-t mt-3 pb-4">
-                <div class="flex flex-col space-y-3 pt-3">
-                    <a href="#" class="text-blue-600 font-semibold py-2">Inicio</a>
-                    <a href="#" class="text-gray-600 py-2">Catálogo</a>
-                    <a href="#" class="text-gray-600 py-2">Servicios</a>
-                    <a href="#" class="text-gray-600 py-2">Eventos</a>
-                    <a href="#" class="text-gray-600 py-2">Contacto</a>
-                    <a href="{{ route('login') }}" class="bg-blue-600 text-white text-center py-2 rounded-lg mt-2">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Acceder
-                    </a>
-                </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-sm text-gray-600 hidden md:block">admin@biblioteca.com</span>
+                <a class="text-red-500 hover:text-red-700 font-bold text-sm" href="{{ route('logout') }}">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Salir
+                </a>
             </div>
         </div>
     </header>
+@yield('content')
 
-    <!-- HERO SECTION -->
-    <section class="hero-bg text-white py-16 md:py-24">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">
-                Bienvenidos a la Biblioteca Municipal
-            </h1>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">
-                Un espacio para descubrir, aprender y crecer. Miles de libros te esperan.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100">
-                    <i class="fas fa-search mr-2"></i>Explorar Catálogo
-                </a>
-                <a href="#" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 border border-white">
-                    <i class="fas fa-user-plus mr-2"></i>Hazte Socio
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICIOS -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
-                Nuestros Servicios
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Servicio 1 -->
-                <div class="bg-white p-8 rounded-xl shadow text-center hover:shadow-lg transition-shadow">
-                    <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-book-open text-blue-600 text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Préstamo de Libros</h3>
-                    <p class="text-gray-600">
-                        Lleva hasta 5 libros por 15 días. Renovable por teléfono o web.
-                    </p>
-                </div>
-
-                <!-- Servicio 2 -->
-                <div class="bg-white p-8 rounded-xl shadow text-center hover:shadow-lg transition-shadow">
-                    <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-laptop text-green-600 text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Sala Digital</h3>
-                    <p class="text-gray-600">
-                        Computadoras con internet, e-books y recursos digitales gratuitos.
-                    </p>
-                </div>
-
-                <!-- Servicio 3 -->
-                <div class="bg-white p-8 rounded-xl shadow text-center hover:shadow-lg transition-shadow">
-                    <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-users text-purple-600 text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Actividades</h3>
-                    <p class="text-gray-600">
-                        Clubes de lectura, talleres y eventos culturales para todas las edades.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HORARIOS -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
-                    Horarios de Atención
-                </h2>
-                
-                <div class="bg-blue-50 rounded-xl p-8">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">
-                                <i class="fas fa-clock text-blue-600 mr-2"></i>Horario Regular
-                            </h3>
-                            <ul class="space-y-3">
-                                <li class="flex justify-between">
-                                    <span class="text-gray-700">Lunes a Viernes</span>
-                                    <span class="font-semibold">9:00 - 20:00</span>
-                                </li>
-                                <li class="flex justify-between">
-                                    <span class="text-gray-700">Sábados</span>
-                                    <span class="font-semibold">10:00 - 14:00</span>
-                                </li>
-                                <li class="flex justify-between">
-                                    <span class="text-gray-700">Domingos</span>
-                                    <span class="font-semibold">Cerrado</span>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">
-                                <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>Ubicación
-                            </h3>
-                            <p class="text-gray-700 mb-3">
-                                <i class="fas fa-building mr-2"></i>
-                                Plaza Central, 123
-                            </p>
-                            <p class="text-gray-700 mb-3">
-                                <i class="fas fa-phone mr-2"></i>
-                                (01) 234-5678
-                            </p>
-                            <p class="text-gray-700">
-                                <i class="fas fa-envelope mr-2"></i>
-                                info@bibliotecamunicipal.es
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-16 bg-blue-600 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-6">
-                ¿Aún no tienes tu carné de biblioteca?
-            </h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">
-                Es totalmente gratuito. Solo necesitas tu DNI y una foto.
-            </p>
-            <a href="#" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 inline-block">
-                <i class="fas fa-address-card mr-2"></i>Solicitar Carné
-            </a>
-        </div>
-    </section>
-
-    <!-- FOOTER PÚBLICO -->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                
-                <!-- Columna 1 -->
-                <div>
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-book text-blue-400 text-2xl mr-3"></i>
-                        <h3 class="text-xl font-bold">Biblioteca Municipal</h3>
-                    </div>
-                    <p class="text-gray-400">
-                        Serviendo a la comunidad desde 1985. Un espacio para todos.
-                    </p>
-                </div>
-
-                <!-- Columna 2 -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Enlaces Rápidos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Catálogo Online</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Normas de Uso</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Préstamo Interbibliotecario</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Sugerencias</a></li>
-                    </ul>
-                </div>
-
-                <!-- Columna 3 -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Recursos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">E-books Gratuitos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Revistas Digitales</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Bases de Datos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Guías de Estudio</a></li>
-                    </ul>
-                </div>
-
-                <!-- Columna 4 -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Síguenos</h4>
-                    <div class="flex space-x-4 mb-6">
-                        <a href="#" class="text-gray-400 hover:text-white text-xl">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white text-xl">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white text-xl">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white text-xl">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-400 text-sm">
-                        Suscríbete a nuestro boletín para recibir novedades.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Línea divisoria -->
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p class="text-gray-400">
-                    &copy; 2024 Biblioteca Municipal. Todos los derechos reservados.
-                </p>
-                <p class="text-gray-500 text-sm mt-2">
-                    Diseñado con ❤️ para la comunidad
-                </p>
-            </div>
-        </div>
-    </footer>
-
-</body>
-
-    
-
-</html>
+    @include('partials.admin.footer')

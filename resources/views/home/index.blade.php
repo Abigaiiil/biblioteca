@@ -1,36 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Admin | Gestión de Libros</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+@extends('layout.admin')
+ 
+@section('content')
+ <!-- Contenido principal -->
 
-    <header class="fixed w-full z-20 top-0 bg-white border-b border-gray-200">
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-3 px-4">
-            
-            <div class="flex items-center">
-                <button id="sidebarToggle" class="mr-4 inline-md:hidden text-gray-600 focus:outline-none lg:hidden">
-                    <i class="fas fa-bars fa-lg"></i>
-                </button>
-                <a class="text-blue-600 no-underline hover:no-underline font-bold text-xl" href="#">
-                    <i class="fas fa-book-reader mr-2"></i> BiblioAdmin
-                </a>
-            </div>
-
-            <div class="flex items-center space-x-4">
-                <span class="text-sm text-gray-600 hidden md:block">admin@biblioteca.com</span>
-                <a class="text-red-500 hover:text-red-700 font-bold text-sm" href="#">
-                    <i class="fas fa-sign-out-alt mr-1"></i> Salir
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <div class="flex flex-col md:flex-row">
+<div class="flex flex-col md:flex-row">
         
         <!-- Sidebar -->
         <aside id="sidebar" class="fixed hidden lg:block z-10 h-full top-0 pt-16 flex-shrink-0 w-64 bg-gray-800 text-white transition-all duration-300 -translate-x-full lg:translate-x-0">
@@ -61,7 +34,7 @@
                         </a>
                     </li>
                     <li class="pt-4 mt-4 border-t border-gray-600">
-                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-red-900 text-red-400">
+                        <a href="{{ route('logout') }}" class="flex items-center p-2 rounded-lg hover:bg-red-900 text-red-400">
                             <i class="fas fa-sign-out-alt w-6"></i>
                             <span class="ml-3">Salir</span>
                         </a>
@@ -70,7 +43,6 @@
             </div>
         </aside>
 
-        <!-- Contenido principal -->
         <main class="w-full lg:ml-64 mt-16 p-6 min-h-screen">
             <!-- Encabezado -->
             <header class="mb-6">
@@ -309,35 +281,4 @@
         </main>
     </div>
 
-    <!-- Footer -->
-    <footer class="lg:ml-64 bg-white border-t border-gray-200 p-6 text-center">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-            <p class="text-gray-500 text-sm mb-3 md:mb-0">
-                <i class="fas fa-copyright mr-1"></i> 2024 Sistema de Administración de Biblioteca.
-            </p>
-            <div class="flex space-x-4 text-sm">
-                <a href="#" class="text-gray-500 hover:text-blue-600">Política de privacidad</a>
-                <a href="#" class="text-gray-500 hover:text-blue-600">Términos de uso</a>
-                <a href="#" class="text-gray-500 hover:text-blue-600">Soporte</a>
-            </div>
-        </div>
-        <p class="text-xs text-gray-400 mt-2">
-            Administrador: <span class="font-medium text-blue-600">admin@biblioteca.com</span>
-        </p>
-    </footer>
-
-    <script>
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const sidebar = document.getElementById('sidebar');
-
-        sidebarToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('hidden');
-            sidebar.classList.toggle('-translate-x-full');
-            sidebar.classList.toggle('translate-x-0');
-            sidebar.classList.toggle('w-full');
-            sidebar.classList.toggle('w-64');
-        });
-    </script>
-
-</body>
-</html>
+    @endsection
