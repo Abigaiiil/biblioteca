@@ -6,6 +6,9 @@
         <main class="w-full lg:ml-64 mt-16 p-6 min-h-screen"> 
             <h1 class= "text-2xl font-bold mb-6">Categorías</h1>
 
+            <a href="{{ route('categorias.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Agregar categoría</a>
+             <br><br>   
+
             <div class="bg-white shadow-md rounded-lg p-6">
                 <table class = "min-w-full table-auto">
                     <thead>
