@@ -65,7 +65,7 @@
             <div class="p-4 overflow-y-auto h-full">
                 <ul class="space-y-2">
                     <li>
-                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
+                        <a href="{{ route('home') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
                             <i class="fas fa-home w-6"></i>
                             <span class="ml-3">Inicio</span>
                         </a>
