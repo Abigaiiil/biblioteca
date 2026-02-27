@@ -100,10 +100,10 @@
                         <i class="fas fa-book text-blue-600 mr-2"></i>
                         Lista de Libros
                     </h2>
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center text-sm">
+                    <a href="{{ route('libros.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center text-sm">
                         <i class="fas fa-plus-circle mr-2"></i>
                         Agregar libro
-                    </button>
+                    </a>
                 </div>
                 
                 <div class="overflow-x-auto">
@@ -119,12 +119,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($libros as $libro)
                             <tr>
-                                <td class="p-3 border-b text-sm font-medium">Cien años de soledad</td>
-                                <td class="p-3 border-b text-sm">Gabriel García Márquez</td>
-                                <td class="p-3 border-b text-sm font-mono text-xs">978-0307474728</td>
+                                <td class="p-3 border-b text-sm font-medium">{{ $libro->nombre }}</td>
+                                <td class="p-3 border-b text-sm">{{ $libro->autor }}</td>
+                                <td class="p-3 border-b text-sm font-mono text-xs">{{ $libro->isbn }}</td>
                                 <td class="p-3 border-b text-sm">
-                                    <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">Literatura</span>
+                                    <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">{{ $libro->categoria->nombre }}</span>
                                 </td>
                                 <td class="p-3 border-b text-sm">
                                     <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">Disponible</span>
@@ -140,7 +141,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            @endforeach
+                            <!--<tr>
                                 <td class="p-3 border-b text-sm font-medium">1984</td>
                                 <td class="p-3 border-b text-sm">George Orwell</td>
                                 <td class="p-3 border-b text-sm font-mono text-xs">978-0451524935</td>
@@ -223,7 +225,7 @@
                                         </a>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
                 </div>
