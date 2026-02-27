@@ -60,6 +60,51 @@
             </div>
         </div>
     </header>
+
+        <aside id="sidebar" class="fixed hidden lg:block z-10 h-full top-0 pt-16 flex-shrink-0 w-64 bg-gray-800 text-white transition-all duration-300 -translate-x-full lg:translate-x-0">
+            <div class="p-4 overflow-y-auto h-full">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
+                            <i class="fas fa-home w-6"></i>
+                            <span class="ml-3">Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group bg-gray-700">
+                            <i class="fas fa-book w-6"></i>
+                            <span class="ml-3">Libros</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('categorias.index') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group bg-gray-700">
+                            <i class="fas fa-tags w-6"></i>
+                            <span class="ml-3">Categorías</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
+                            <i class="fas fa-users w-6"></i>
+                            <span class="ml-3">Usuarios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
+                            <i class="fas fa-hand-holding-heart w-6"></i>
+                            <span class="ml-3">Préstamos</span>
+                        </a>
+                    </li>
+                    <li class="pt-4 mt-4 border-t border-gray-600">
+                        <a href="{{ route('logout') }}" class="flex items-center p-2 rounded-lg hover:bg-red-900 text-red-400">
+                            <i class="fas fa-sign-out-alt w-6"></i>
+                            <span class="ml-3">Salir</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+
 @yield('content')
 
     @include('partials.admin.footer')

@@ -2,43 +2,28 @@
 
 @section('content')
 
-<h1>Categorías</h1>
-<div class="container">
-    <h1>Categorias</h1>
-    <a href="{{ route('categorias.create') }}" class="btn btn-primary mb-3">Criar Categoria</a>
+    <div class="flex flex-col md:flex-row">
+        <main class="w-full lg:ml-64 mt-16 p-6 min-h-screen"> 
+            <h1 class= "text-2xl font-bold mb-6">Categorías</h1>
 
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($categorias as $categoria)
-                <tr>
-                    <td>{{ $categoria->id }}</td>
-                    <td>{{ $categoria->nome }}</td>
-                    <td>
-                        <a href="{{ route('categorias.edit', $categoria->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                        <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    {{ $categorias->links() }}
-
+            <div class="bg-white shadow-md rounded-lg p-6">
+                <table class = "min-w-full table-auto">
+                    <thead>
+                        <tr>
+                        <th class="px-4 py-2 border-b">ID</th>
+                        <th class="px-4 py-2 border-b">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($categorias as $categoria)
+                            <tr>
+                            <td class="px-4 py-2 border-b">{{ $categoria->id }}</td>
+                            <td class="px-4 py-2 border-b">{{ $categoria->nombre }} </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
 @endsection
