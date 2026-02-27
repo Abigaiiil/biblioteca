@@ -6,6 +6,12 @@
         <main class="w-full lg:ml-64 mt-16 p-6 min-h-screen"> 
             <h1 class= "text-2xl font-bold mb-6">Categorías</h1>
 
+            @if(session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <a href="{{ route('categorias.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Agregar categoría</a>
              <br><br>   
 
@@ -15,6 +21,7 @@
                         <tr>
                         <th class="px-4 py-2 border-b">ID</th>
                         <th class="px-4 py-2 border-b">Nombre</th>
+                        <th class="px-4 py-2 border-b">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +29,13 @@
                             <tr>
                             <td class="px-4 py-2 border-b">{{ $categoria->id }}</td>
                             <td class="px-4 py-2 border-b">{{ $categoria->nombre }} </td>
+                            <td class="px-4 py-2 border-b">
+                                <a href="{{ route('categorias.edit', $categoria->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">Editar</a>
+                                <form action="#" method="POST" class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Eliminar</button>
+                                </form>
                             </tr>
                         @endforeach
                     </tbody>
