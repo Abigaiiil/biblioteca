@@ -132,12 +132,17 @@
                                 </td>
                                 <td class="p-3 border-b text-sm">
                                     <div class="flex space-x-3">
-                                        <a href="#" class="text-blue-600 hover:text-blue-800" title="Editar">
+                                        <a href="{{ route('libros.edit', $libro->id) }}" class="text-blue-600 hover:text-blue-800" title="Editar">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="#" class="text-red-600 hover:text-red-800" title="Eliminar">
+                                        <form action="{{ route('libros.destroy', $libro->id) }}" method="POST" class="text-red-600 hover:text-red-800" title="Eliminar">
+                                            <button type="submit" class="text-red-600 hover:text-red-800" title="Eliminar">
                                             <i class="fas fa-trash"></i>
-                                        </a>
+                                            </button>
+                                        @csrf
+                                        @method('DELETE')
+                                        </form>
+
                                     </div>
                                 </td>
                             </tr>
@@ -229,6 +234,19 @@
                         </tbody>
                     </table>
                 </div>
+
+<!--
+                <td class="p-3 border-b text-sm">
+                                    <div class="flex space-x-3">
+                                        <a href="{{ route('libros.edit', $libro->id) }}" class="text-blue-600 hover:text-blue-800">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="#" class="text-red-600 hover:text-red-800">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td> -->
+
 
                 <!-- Paginación -->
                 <div class="flex justify-between items-center mt-4 text-sm">
