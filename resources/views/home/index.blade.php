@@ -43,10 +43,10 @@
                         <i class="fas fa-tags text-blue-600 mr-2"></i>
                         Categorías
                     </h2>
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center text-sm">
+                    <a href="{{ route('categorias.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition flex items-center text-sm">
                         <i class="fas fa-plus-circle mr-2"></i>
                         Nueva categoría
-                    </button>
+                    </a>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                     <span class="bg-blue-100 text-blue-700 px-3 py-2 rounded-lg text-sm font-medium text-center">Literatura</span>
@@ -235,21 +235,12 @@
                     </table>
                 </div>
 
-<!--
-                <td class="p-3 border-b text-sm">
-                                    <div class="flex space-x-3">
-                                        <a href="{{ route('libros.edit', $libro->id) }}" class="text-blue-600 hover:text-blue-800">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="#" class="text-red-600 hover:text-red-800">
-                                            <i class="fas fa-trash"></i>
-                                        </a>
-                                    </div>
-                                </td> -->
-
 
                 <!-- Paginación -->
                 <div class="flex justify-between items-center mt-4 text-sm">
+                 {{ $libros->links() }}
+                </div>
+                <!--<div class="flex justify-between items-center mt-4 text-sm">
                     <p class="text-gray-600">Mostrando 1-5 de 1,247 libros</p>
                     <div class="flex space-x-2">
                         <button class="px-3 py-1 border rounded-lg hover:bg-gray-50">Anterior</button>
@@ -258,7 +249,7 @@
                         <button class="px-3 py-1 border rounded-lg hover:bg-gray-50">3</button>
                         <button class="px-3 py-1 border rounded-lg hover:bg-gray-50">Siguiente</button>
                     </div>
-                </div>
+                </div>-->
             </section>
         </main>
     </div>
