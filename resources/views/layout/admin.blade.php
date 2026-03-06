@@ -83,7 +83,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
+                        <a href="{{ route('usuarios.index') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
                             <i class="fas fa-users w-6"></i>
                             <span class="ml-3">Usuarios</span>
                         </a>
