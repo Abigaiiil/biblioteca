@@ -5,7 +5,7 @@
 <main class="w-full lg:ml-64 mt-16 p-6 min-h-screen"> 
     <h1 class= "text-2xl font-bold mb-6">Lista de Usuarios</h1>
 
-    <a href="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Crear Usuario</a>
+    <a href="{{ route('usuarios.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Crear Usuario</a>
 
     <div class="bg-white shadow-md rounded-lg p-6 mt-4">
                 <table class = "min-w-full table-auto">
@@ -22,11 +22,11 @@
             @foreach($usuarios as $usuario)
             <tr>
                 <td class="px-4 py-2 border-b">{{ $usuario->id }}</td>
-                <td class="px-4 py-2 border-b">{{ $usuario->nombre }}</td>
+                <td class="px-4 py-2 border-b">{{ $usuario->name }}</td>
                 <td class="px-4 py-2 border-b">{{ $usuario->email }}</td>
                 <td class="px-4 py-2 border-b">{{ $usuario->user_type }}</td>
                 <td class="px-4 py-2 border-b">
-                    <a href="" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</a>
+                    <a href="{{ route('usuarios.edit', $usuario->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Editar</a>
                     <form action="" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
