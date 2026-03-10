@@ -71,13 +71,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group bg-gray-700">
+                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
                             <i class="fas fa-book w-6"></i>
                             <span class="ml-3">Libros</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('categorias.index') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group bg-gray-700">
+                        <a href="{{ route('categorias.index') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
                             <i class="fas fa-tags w-6"></i>
                             <span class="ml-3">Categorías</span>
                         </a>
@@ -89,7 +89,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
+                        <a href="{{ route('prestamos.index') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 group">
                             <i class="fas fa-hand-holding-heart w-6"></i>
                             <span class="ml-3">Préstamos</span>
                         </a>
