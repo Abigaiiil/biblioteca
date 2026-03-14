@@ -53,7 +53,12 @@
             </div>
 
             <div class="flex items-center space-x-4">
-                <span class="text-sm text-gray-600 hidden md:block">admin@biblioteca.com</span>
+                <span class="text-sm text-gray-600 hidden md:block">
+                    @auth
+                    <span class="text-sm text-gray-600 hidden md:block">
+                    <i class="fas fa-user mr-1"></i> {{ auth()->user()->name }}</span>
+                    @endauth
+                </span>
                 <a class="text-red-500 hover:text-red-700 font-bold text-sm" href="{{ route('logout') }}">
                     <i class="fas fa-sign-out-alt mr-1"></i> Salir
                 </a>

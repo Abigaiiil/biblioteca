@@ -11,7 +11,11 @@
             </div>
         </div>
         <p class="text-xs text-gray-400 mt-2">
-            Administrador: <span class="font-medium text-blue-600">admin@biblioteca.com</span>
+            Usuario: <span class="font-medium text-blue-600">
+                @auth
+                {{ auth()->user()->name }}</span>
+                @endauth
+
         </p>
     </footer>
 
