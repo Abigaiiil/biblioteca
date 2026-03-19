@@ -26,6 +26,12 @@
             <p><strong>Nombre:</strong> {{ $usuario->name }}</p>
             <p><strong>Email:</strong> {{ $usuario->email }}</p>
         </div>
+
+        <form action="{{ route('prestamos.select_libro') }}" method="POST">
+            @csrf
+            <input type="hidden" name="usuario_id" value="{{ $usuario->id }}">
+            <input type="submit" value="Seleccionar Libro" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4">
+        </form> 
     @endisset
         </div>
     </main>

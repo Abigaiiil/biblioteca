@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->datetime('fecha_entrega')->nullable();
-            $table->string('estado');
+            $table->string('estado')->default('pendiente');
             $table->unsignedBigInteger('libro_id');
             $table->unsignedBigInteger('usuario_id');
 
             $table->foreign('libro_id')->references('id')->on('libros')->onDelete('cascade');
-            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade');
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
