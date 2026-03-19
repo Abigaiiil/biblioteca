@@ -15,21 +15,21 @@
             <a href="{{ route('categorias.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Agregar categoría</a>
              <br><br>   
 
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <table class = "min-w-full table-auto">
-                    <thead>
+            <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
                         <tr>
                         <th class="px-4 py-2 border-b">ID</th>
                         <th class="px-4 py-2 border-b">Nombre</th>
                         <th class="px-4 py-2 border-b">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($categorias as $categoria)
                             <tr>
-                            <td class="px-4 py-2 border-b">{{ $categoria->id }}</td>
-                            <td class="px-4 py-2 border-b">{{ $categoria->nombre }} </td>
-                            <td class="px-4 py-2 border-b">
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $categoria->id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $categoria->nombre }} </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
                                 <a href="{{ route('categorias.edit', $categoria->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">Editar</a>
                                 <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" class="inline-block">
                                     @csrf
@@ -42,6 +42,7 @@
                 </table>
                 <div class="mt-4">
                     {{ $categorias->links() }}
+                </div>
             </div>
         </main>
     </div>

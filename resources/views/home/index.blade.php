@@ -128,7 +128,11 @@
                                     <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">{{ $libro->categoria->nombre }}</span>
                                 </td>
                                 <td class="p-3 border-b text-sm">
-                                    <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">Disponible</span>
+                                    @if($libro->estatus == 0)
+                                        <span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">Disponible</span>
+                                    @else
+                                        <span class="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs">Prestado</span>
+                                    @endif
                                 </td>
                                 <td class="p-3 border-b text-sm">
                                     <div class="flex space-x-3">
