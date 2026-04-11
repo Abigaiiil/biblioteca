@@ -16,23 +16,23 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
                     <h3 class="text-gray-500 text-sm uppercase">Total de libros</h3>
-                    <p class="text-3xl font-bold">1,247</p>
-                    <span class="text-xs text-green-500">+12 nuevos</span>
+                    <p class="text-3xl font-bold">{{ $total_libros }}</p>
+                    <!--<span class="text-xs text-green-500">+12 nuevos</span>-->
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-yellow-500">
                     <h3 class="text-gray-500 text-sm uppercase">Libros prestados</h3>
-                    <p class="text-3xl font-bold">189</p>
-                    <span class="text-xs text-gray-500">15.2% del total</span>
+                    <p class="text-3xl font-bold">{{ $libros_prestados }}</p>
+                    <!--<span class="text-xs text-gray-500">15.2% del total</span>-->
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-500">
                     <h3 class="text-gray-500 text-sm uppercase">Categorías</h3>
-                    <p class="text-3xl font-bold">12</p>
-                    <span class="text-xs text-blue-500">+2 nuevas</span>
+                    <p class="text-3xl font-bold">{{ $total_categorias }}</p>
+                    <!--<span class="text-xs text-blue-500">+2 nuevas</span>-->
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-purple-500">
                     <h3 class="text-gray-500 text-sm uppercase">Devoluciones pendientes</h3>
-                    <p class="text-3xl font-bold">24</p>
-                    <span class="text-xs text-red-500">-3.4% desde ayer</span>
+                    <p class="text-3xl font-bold">{{ $devoluciones_pendientes }}</p>
+                    <!--<span class="text-xs text-red-500">-3.4% desde ayer</span>-->
                 </div>
             </div>
 
