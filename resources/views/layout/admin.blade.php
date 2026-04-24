@@ -55,7 +55,8 @@
             <div class="flex items-center space-x-4">
                     @auth
                     <span class="text-sm text-gray-600 hidden md:block">
-                    <i class="fas fa-user mr-1"></i> {{ auth()->user()->name }}</span>
+                    <i class="fas fa-user mr-1"></i><a href="{{ route('usuarios.profile') }}">{{ auth()->user()->name }}</a>
+                    </span>
                     @endauth
                 <a class="text-red-500 hover:text-red-700 font-bold text-sm" href="{{ route('logout') }}">
                     <i class="fas fa-sign-out-alt mr-1"></i> Salir
